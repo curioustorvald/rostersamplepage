@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+}
+
+html, body {
+    background-color: #F0EDE5;
+    font-family: Open Sans, Arial;
+    color: #454545;
+    font-size: 16px;
+    margin: 2em auto;
+    max-width: 100%;
+    padding: 1em;
+    line-height: 1.4;
+    text-align: justify;
+}
+
+h4 {
+    text-align: center;
+    font-size: 1.1em;
+    color: #333;
+    padding: 0;
+}
+
+h5 {
+    text-align: center;
+    font-size: 0.9em;
+    color: #888;
+    padding: 0;
+    font-weight: 400;
+}
+
+.furBox {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 16px 0;
+    float: left;
+    margin: 10px;
+    background-color: #f9f9f9;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 210px;
+    /*max-height: 410px;*/
+    width: 33%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 27%;
+    animation: smooth 1.5s backwards;
+    animation-delay: 0.40s;
+}
+}
+
+.furBox .imgBox {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.furBox .imgBox img {
+    width: 100%;
+}
+
+.searchresults {
+    margin: 1rem;
+    background-color: #f9f9f9;
+}

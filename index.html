@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>
+        Fursuit Roaster with Filter Demo
+    </title>
+</head>
+<body>
+    <section id="searchform">
+        <form onsubmit="return false;" method="post" name="searchtagsform">
+            <label for="searchtags">Search tags</label>
+            <input type="search" id="searchtags" name="searchtags">
+            <input type="submit" value="Submit" onclick="query()" />
+        </form>
+        <table><tr><td width=50%>
+            <p>태그 옵션:</p>
+            <ul>
+                <li>maker &ndash; 퍼슈트의 제작자를 나타냅니다. 자작 퍼슈트의 경우 "DIY"를 사용하십시오</li>
+                <li>name &ndash; 퍼슈트 캐릭터의 이름</li>
+                <li>owner &ndash; 퍼슈트의 오너</li>
+                <li>species &ndash; 퍼슈트 캐릭터의 종</li>
+                <li>style &ndash; 퍼슈트 캐릭터의 스타일 (리얼, 케모, 세미)
+            </ul>
+            <p>예제: "maker:bluefox species:wolf"<br />이 태그는 <emph>Bluefox</emph>에서 제작한 <emph>늑대</emph> 퍼슈트를 검색합니다.</p>
+            <p>입력 칸을 비우고 검색하면 모든 퍼슈트를 보여줍니다.
+        </td><td width=50%>
+            <p>Tag options:</p>
+            <ul>
+                <li>maker &ndash; Creator of the fursuit. Self-made use "DIY"</li>
+                <li>name &ndash; Name of the character</li>
+                <li>owner &ndash; Name of the fursuit's owner</li>
+                <li>species &ndash; Self-explanatory</li>
+                <li>style &ndash; Style of the character (real, kemo, semi)</li>
+            </ul>
+            <p>Example tag: "maker:bluefox species:wolf"<br />Above tag will search for all the <emph>wolves</emph> made by <emph>Bluefox</emph>.</p>
+            <p>Empty the search box to show all of the fursuits.</p>
+        </td></table></tr>
+    </section>
+    <script src="script.js"></script>
+    <hr>
+    <section id="searchResults">
+
+    </section>
+</body>
+</html>
