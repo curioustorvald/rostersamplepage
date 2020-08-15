@@ -115,9 +115,10 @@ function performSearch(searchFilter) {
         for (const searchCriterion in searchFilter) {
 
             try {
-                searchMatches &= furdb[furid][searchCriterion].toLowerCase() == searchFilter[searchCriterion].toLowerCase();
+                searchMatches &= furdb[furid][searchCriterion].toLowerCase().includes(searchFilter[searchCriterion].toLowerCase());
                 // 대소문자를 구분하지 않게 하기 위해 toLowerCase를 사용 
                 // searchMatches에 and하기 때문에 모든 조건을 만족해야만 searchMatches가 최종적으로 true가 됨
+                // 여기서는 includes를 사용해서 부분적 매칭이 되게 함
             }
             catch (e) {}
         }
