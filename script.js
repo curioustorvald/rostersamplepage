@@ -48,10 +48,10 @@ const furdb = {
 
 const i18n = {
     "ko": {
-        "TagSyntaxError": "태그가 올바르지 않게 입력되었습니다."
+        "TagSyntaxError": "태그가 올바르지 않게 입력되었습니다: "
     },
     "en": {
-        "TagSyntaxError": "Entered tags are malformed."
+        "TagSyntaxError": "Entered tag is malformed: "
     }
 }
 
@@ -115,15 +115,23 @@ function performSearch(searchFilter) {
         for (const searchCriterion in searchFilter) {
 
             try {
-                searchMatches &= furdb[furid][searchCriterion].toLowerCase().includes(searchFilter[searchCriterion].toLowerCase());
-                // 대소문자를 구분하지 않게 하기 위해 toLowerCase를 사용 
-                // searchMatches에 and하기 때문에 모든 조건을 만족해야만 searchMatches가 최종적으로 true가 됨
-                // 여기서는 includes를 사용해서 부분적 매칭이 되게 함
+                // 태그가 올바른지 검사
+                if (searchCriterion in furdb[furid]) {
+                    searchMatches &= furdb[furid][searchCriterion].toLowerCase().includes(searchFilter[searchCriterion].toLowerCase());
+                    // 대소문자를 구분하지 않게 하기 위해 toLowerCase를 사용 
+                    // searchMatches에 and하기 때문에 모든 조건을 만족해야만 searchMatches가 최종적으로 true가 됨
+                    // 여기서는 includes를 사용해서 부분적 매칭이 되게 함
+                }
+                // 올바르지 않은 태그면 에러창 띄움
+                else {
+                    alert(i18n[lang].TagSyntaxError + searchCriterion);
+                    return undefined;
+                }
             }
             catch (e) {}
         }
 
-        if (searchMatches) {
+        if (searchMatches && furdb[furid].hidden == "FALSE") {
             foundFurs.push(furdb[furid]);
         }
     }
