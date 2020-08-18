@@ -1,3 +1,4 @@
+<meta charset = "UTF-8" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,38 +7,74 @@
         Fursuit Roaster with Filter Demo
     </title>
 </head>
-<body>
-    <section id="searchform">
-        <form onsubmit="return false;" method="post" name="searchtagsform">
-            <label for="searchtags">Search tags</label>
-            <input type="search" id="searchtags" name="searchtags">
-            <input type="submit" value="Submit" onclick="query()" />
-        </form>
-        <table><tr><td width=50%>
-            <p>태그 옵션:</p>
-            <ul>
-                <li>maker &ndash; 퍼슈트의 제작자를 나타냅니다. 자작 퍼슈트의 경우 "DIY"를 사용하십시오</li>
-                <li>name &ndash; 퍼슈트 캐릭터의 이름</li>
-                <li>owner &ndash; 퍼슈트의 오너</li>
-                <li>species &ndash; 퍼슈트 캐릭터의 종</li>
-                <li>style &ndash; 퍼슈트 캐릭터의 스타일 (리얼, 케모, 세미)
-            </ul>
-            <p>예제: "maker:bluefox species:wolf"<br />이 태그는 <emph>Bluefox</emph>에서 제작한 <emph>늑대</emph> 퍼슈트를 검색합니다.</p>
-            <p>입력 칸을 비우고 검색하면 모든 퍼슈트를 보여줍니다.
-        </td><td width=50%>
-            <p>Tag options:</p>
-            <ul>
-                <li>maker &ndash; Creator of the fursuit. Self-made use "DIY"</li>
-                <li>name &ndash; Name of the character</li>
-                <li>owner &ndash; Name of the fursuit's owner</li>
-                <li>species &ndash; Self-explanatory</li>
-                <li>style &ndash; Style of the character (real, kemo, semi)</li>
-            </ul>
-            <p>Example tag: "maker:bluefox species:wolf"<br />Above tag will search for all the <emph>wolves</emph> made by <emph>Bluefox</emph>.</p>
-            <p>Empty the search box to show all of the fursuits.</p>
-        </td></table></tr>
-    </section>
+<body onload="pageinit();">
     <script src="script.js"></script>
+    <section id="languages">
+        <form onsubmit="return false;" method="post" name="langselect">
+            <label>Language:</label>
+            <input type="radio" id="lang_ko" name="lang" checked="checked" onclick="setLangKo();">
+            <label for="lang_ko">한국어</label>
+            <input type="radio" id="lang_en" name="lang" onclick="setLangEn();">
+            <label for="lang_en">English</label>
+        </form>
+    </section>
+    <section id="simplesearch">
+        <h3 id="simplesearch_header"></h3>
+        <form onsubmit="return false;" method="post" name="simplesearchform">
+            <label for="simplesearch_input_creatorname" id="simplesearch_input_creatorname_string">Creator: </label>
+            <input type="search" id="simplesearch_input_creatorname" name="simplesearch_input_creatorname">
+            <br />
+            <label for="simplesearch_input_furname_ko" id="simplesearch_input_furname_ko_string">Name (한국어): </label>
+            <input type="search" id="simplesearch_input_furname_ko" name="simplesearch_input_furname_ko">
+            <br />
+            <label for="simplesearch_input_furname_en" id="simplesearch_input_furname_en_string">Name (영어): </label>
+            <input type="search" id="simplesearch_input_furname_en" name="simplesearch_input_furname_en">
+            <br />
+            <label for="simplesearch_input_bday_from" id="simplesearch_input_bday_title_string">Birthday (yyyymmdd): </label>
+            <input type="search" id="simplesearch_input_bday_from" name="simplesearch_input_bday_from">
+            <label> &mdash; </label>
+            <input type="search" id="simplesearch_input_bday_to" name="simplesearch_input_bday_to">
+            <br />
+            <label for="simplesearch_dropdown_species" id="simplesearch_dropdown_species_string">Species: </label>
+            <select name="simplesearch_dropdown_species" id="simplesearch_dropdown_species">
+                <option value="dont_care">&mdash;</option>
+                <option value="literal_dog">개 Dog</option>
+                <option value="literal_wolf">늑대 Wolf</option>
+                <option value="literal_cat">고양이 Cat</option>
+                <option value="group_felidae">고양이과 Big Cat</option>
+                <option value="literal_fox">여우 Fox</option>
+                <option value="literal_rabbit">토끼 Rabbit and Hare</option>
+                <option value="group_aves">조류 Birds</option>
+                <option value="group_pisces">어류 Fish</option>
+                <option value="literal_dragon">드래곤 Dragon</option>
+                <option value="literal_deer">사슴/노루 Deer</option>
+                <option value="group_raccoons">레서판다/라쿤/너구리 Red Panda/Raccon</option>
+            </select>
+            <br />
+            <label for="simplesearch_input_is_partial" id="simplesearch_input_is_partial_string">Partial? </label>
+            <select name="simplesearch_input_is_partial" id="simplesearch_input_is_partial">
+                <option value="dont_care">&mdash;</option>
+                <option value="TRUE">TRUE</option>
+                <option value="FALSE">FALSE</option>
+            </select>
+            <br />
+            <input type="submit" value="Submit" id="simple_submit_button" onclick="simplequery()" />
+        </form>
+    </section>
+    <hr>
+    <section id="searchform">
+        <h3 id="searchform_header"></h3>
+        <form onsubmit="return false;" method="post" name="searchtagsform">
+            <label for="searchtags" id="searchtags_string">Search tags</label>
+            <input type="search" id="searchtags" name="searchtags">
+            <input type="checkbox" id="exactmatch" name"exactmatch">
+            <label for="exactmatch" id="exactmatch_string">Exact Match?</label>
+            <input type="submit" value="Submit" id="submit_button" onclick="query()" />
+        </form>
+    </section>
+    <section id="tagdoc">
+            
+    </section>
     <hr>
     <section id="searchResults">
 
