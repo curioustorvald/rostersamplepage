@@ -49,18 +49,15 @@ h5 {
 }
 
 .imgBox {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-height: var(--img-height);
+    display: block;
+    height: var(--img-height);
     overflow: hidden;
-    display: inline-block;
-    margin-top: 0%;
 }
 
-.furBox .imgBox img {
+.imgBox img {
+    object-fit: cover;
     width: 100%;
+    height: var(--img-height);
 }
 
 .searchresults {
